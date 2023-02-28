@@ -1349,6 +1349,72 @@ Name|type|example|description
 **Request Weight:**
 1
 
+#### Position Risk Limits
+
+```shell
+GET /openapi/contract/v1/positionRiskLimits
+```
+
+Retrieves currently applied risk limit levels for the positions of the symbols sent
+
+**Headers:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+X-ACE-KEY | STRING | YES | Your API key
+
+**Query Parameters:**
+
+name|type| required |description
+------------ | ------------ |----------| ------------
+`symbol_ids`|string| `YES`    |symbol ids E.g. `BTC-PERP-REV,ETH-PERP-REV`
+
+**Body Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+signature | STRING | YES | Authentication is needed for this endpoint
+timestamp | LONG | YES | Current unix timestamp(ms)
+recvWindow | LONG | NO | RecvWindow for this request.
+
+**Response:**
+Name|type|example|description
+------------ | ------------ | ------------ | ------------
+`symbolId`|string|`BTC-PERP-REV`|name of the contract
+`riskLimitId`|string|`1`|risk limit id
+`riskLimitAmount`|string|`1000000`|risk limit amount
+`maintainMargin`|string|`0.005`|maintenance margin rate
+`initialMargin`|string|`0.01`|initial margin rate
+`isLong`|boolean|`true`|position side
+
+**Example:**
+```js
+[
+    {
+        "symbolId": "BTC-PERP-REV",
+        "riskLimits": [
+            {
+                "riskLimitId": "1",
+                "riskLimitAmount": "1000000.0",
+                "maintainMargin": "0.005",
+                "initialMargin": "0.01",
+                "isLong": false
+            },
+            {
+                "riskLimitId": "1",
+                "riskLimitAmount": "1000000.0",
+                "maintainMargin": "0.005",
+                "initialMargin": "0.01",
+                "isLong": true
+            }
+        ]
+    }
+]
+```
+
+**Request Weight:**
+1
+
 #### Modify margin
 
 ```shell
