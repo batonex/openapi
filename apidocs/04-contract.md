@@ -1415,6 +1415,46 @@ Name|type|example|description
 **Request Weight:**
 1
 
+#### Set Risk Limit
+
+```shell
+POST /openapi/contract/v1/setRiskLimit
+```
+
+Set risk limit on the symbol
+
+**Headers:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+X-ACE-KEY | STRING | YES | Your API key
+
+**Query Parameters:**
+
+name|type| required |description
+------------ | ------------ |----------| ------------
+`symbol`|string|`YES`|Name of the contract
+`riskLimitId`|integer|`YES`|risk limit id E.g. `1`
+`isLong`|boolean|`YES`|position side
+
+**Body Parameters:**
+
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+signature | STRING | YES | Authentication is needed for this endpoint
+timestamp | LONG | YES | Current unix timestamp(ms)
+recvWindow | LONG | NO | RecvWindow for this request.
+
+**Example:**
+```js
+{
+    "success": "true"
+}
+```
+
+**Request Weight:**
+1
+
 #### Modify margin
 
 ```shell
